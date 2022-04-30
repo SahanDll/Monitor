@@ -1,0 +1,20 @@
+server:
+  port: 8182
+  tomcat:
+    max-threads: 500
+
+spring:
+  application:
+    name: User
+  zipkin:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
+    registerWithEureka: true
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+#defaultName: Loki

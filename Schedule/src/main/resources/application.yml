@@ -1,0 +1,18 @@
+server:
+  port: 8183
+  tomcat:
+    max-threads: 500
+
+spring:
+  application:
+    name: Schedule
+  zipkin:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
+    registerWithEureka: true
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

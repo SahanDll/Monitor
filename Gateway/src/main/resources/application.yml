@@ -1,0 +1,26 @@
+server:
+  port: 8181
+  tomcat:
+    max-threads: 500
+
+spring:
+  application:
+    name: Gateway
+  zipkin:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
+    registerWithEureka: true
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+zuul:
+  routes:
+    User:
+      path: /user/**
+      serviceId: User
+#      url: http://localhost:8182
+#      stripPrefix: true

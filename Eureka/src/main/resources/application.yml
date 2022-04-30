@@ -1,0 +1,42 @@
+server:
+  port: 8082
+  context-path: "/"
+  tomcat:
+    max-threads: 500
+
+config-home: ".\\src\\main\\configuration"
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: eureka
+  zipkin:
+    enabled: false
+  boot:
+    admin:
+      discovery:
+        ignored-services: GATEWAY
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations:
+            - "file:${config-home}\\default\\"
+            - "file:${config-home}\\profiles\\"
+            - "file:${config-home}\\profiles\\{profile}\\"
+            - "file:${config-home}\\services\\"
+            - "file:${config-home}\\services\\{application}\\"
+
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    registerWithEureka: false
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8082/eureka
+  server:
+    enable-self-preservation: false
+
+defaultName: sulari

@@ -1,0 +1,11 @@
+server:
+  context-path: "/"
+
+spring:
+  config:
+    use-legacy-processing: true
+  cloud:
+    config:
+      allowOverride: true
+      overrideNone: true
+      overrideSystemProperties: true
